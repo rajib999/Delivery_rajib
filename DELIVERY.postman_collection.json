@@ -1,0 +1,2306 @@
+{
+	"info": {
+		"_postman_id": "628b35b1-67d2-4a5e-8992-0780f477151f",
+		"name": "DELIVERY",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "TFS_29_App user should be able to complete delivery and update on the app",
+			"item": [
+				{
+					"name": "TFS_58_App_user_should_be_able_to_login_the_FFM_mobile_app",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "749fc02b-3bab-43b0-a49d-4c8ba1b52563",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"//create variable for json Data",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"auth_token_app_user\",jsonData.auth_token);",
+									"",
+									"//Validate Schema for this URL",
+									"",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"data\": {",
+									"                \"company_address\": \"Deshi Ln, Jackson Heights\",",
+									"                \"company_id\": 414,",
+									"                \"company_name\": \"Kabab Park\",",
+									"                \"tin\": \"24411391\"",
+									"            },",
+									"            \"message\": \"Successfully registered company 'Kabab Park' .\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"data\",",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"data\": {",
+									"            \"$id\": \"#/properties/data\",",
+									"            \"type\": \"object\",",
+									"            \"title\": \"The data schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": {},",
+									"            \"examples\": [",
+									"                {",
+									"                    \"company_address\": \"Deshi Ln, Jackson Heights\",",
+									"                    \"company_id\": 414,",
+									"                    \"company_name\": \"Kabab Park\",",
+									"                    \"tin\": \"24411391\"",
+									"                }",
+									"            ],",
+									"            \"required\": [",
+									"                \"company_address\",",
+									"                \"company_id\",",
+									"                \"company_name\",",
+									"                \"tin\"",
+									"            ],",
+									"            \"properties\": {",
+									"                \"company_address\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_address\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The company_address schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"Deshi Ln, Jackson Heights\"",
+									"                    ]",
+									"                },",
+									"                \"company_id\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_id\",",
+									"                    \"type\": \"integer\",",
+									"                    \"title\": \"The company_id schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": 0,",
+									"                    \"examples\": [",
+									"                        414",
+									"                    ]",
+									"                },",
+									"                \"company_name\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_name\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The company_name schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"Kabab Park\"",
+									"                    ]",
+									"                },",
+									"                \"tin\": {",
+									"                    \"$id\": \"#/properties/data/properties/tin\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The tin schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"24411391\"",
+									"                    ]",
+									"                }",
+									"            },",
+									"            \"additionalProperties\": true",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully registered company 'Kabab Park' .\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"   var result=tv4.validateResult(pm.response.json(),schema);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone_number\": \"5857086014\",\n    \"firebase_id\": \"firebase_ididid\",\n    \"secret_text\": \"the_super_secret_text\",\n    \"phone_number_int\": \"5857086014\",\n    \"iso_code\": \"US\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_auth}}/api/v1/field-force/auth/user-login",
+							"host": [
+								"{{url_auth}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"user-login"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "BRD:\nApp user should be able to login the FFM mobile app\n\nObjective:\nAs an App user, I want to login to the FFM\napp so that I can avail services available to me\n\nSE: Shiblu Ahmad\nPO: Pranto Majumder\nQA: Samsur Rahman Rajib\nReviewer: Pranto Majumder.\n\nAcceptance Criteria:\nI should be able to login on the FFM mobile app through\nmy registered contact number.\nI will get an OTP code to verify my number.\n\nDependency: \nUsers should be registered from the company admin\npanel.  \n\nBody: Test steps includes the following payload as a json format in body:\n\n{\n    \"phone_number\": \"5857086014\",\n    \"firebase_id\": \"firebase_ididid\",\n    \"secret_text\": \"the_super_secret_text\",\n    \"phone_number_int\": \"5857086014\",\n    \"iso_code\": \"US\"\n}\nEpected Result:\n{\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDU1NzQ5NjgsImlhdCI6MTYwNDk3MDE2OCwic3ViIjo0MjAsIm1vZHVsZXMiOltdLCJ1c2VyX3R5cGUiOiJHZW5lcmFsIiwibmFtZSI6InNoYWggc3VsdGFuIiwicGhvbmVfbnVtYmVyIjoiNTg1NzA4NjAxNCIsIm1lbWJlcl90eXBlIjozfQ.KcUnHhPR2nnyllQI2WLWJr8YrUwsr5mjDeYDP-o7SUk\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\nActual Result:\n{\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDU1NzQ5NjgsImlhdCI6MTYwNDk3MDE2OCwic3ViIjo0MjAsIm1vZHVsZXMiOltdLCJ1c2VyX3R5cGUiOiJHZW5lcmFsIiwibmFtZSI6InNoYWggc3VsdGFuIiwicGhvbmVfbnVtYmVyIjoiNTg1NzA4NjAxNCIsIm1lbWJlcl90eXBlIjozfQ.KcUnHhPR2nnyllQI2WLWJr8YrUwsr5mjDeYDP-o7SUk\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\nStatus Code: 200 OK\n\nTest Result: Pass\n"
+					},
+					"response": []
+				},
+				{
+					"name": "TFS_29_App user should be able to complete delivery and update on the app",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5b53901-e103-45d5-97ba-bbda789f53b8",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//create variable for json Data",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"//Validate Schema for this URL",
+									"",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\",",
+									"            \"message\": \"Successfully logged in.\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"auth_token\",",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"auth_token\": {",
+									"            \"$id\": \"#/properties/auth_token\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The auth_token schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\"",
+									"            ]",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully logged in.\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"   var result=tv4.validateResult(pm.response.json(),schema);",
+									"});",
+									" ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token_app_user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"delivery_time\" : \"2020-03-12T11:41:24+00:00\",\n\"delivery_location_lattitude\":\"84.35\",\n\"delivery_location_longitude\": \"56.32\",\n\"user_id\" : 420,\n\"field_delivery_id\":554\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_field_delivery}}/api/v1/field-force/delivery/deliveries/user-deliveries",
+							"host": [
+								"{{url_field_delivery}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"delivery",
+								"deliveries",
+								"user-deliveries"
+							]
+						},
+						"description": "BRD:\nApp user should be able to complete delivery and update on the app\n\nObjective:\nAs an app user, I want to submit the assigned delivery so that I can complete my assigned delivery task.\n\nSE: Shiblu Ahmad\nPO: Pranto Majumder\nQA: Samsur Rahman Rajib\nReviewer: Pranto Majumder.\n\nAcceptance Criteria:  \nI can see assigned delivery on my FFM app.                                                        \nAfter completing delivery I can update through the FFM app.\nThe company admin should be able to get an update of my action item.\n\nDependencies: \nCompany admin should be able to login with valid credentials.\nCompany admin should create a user before assign them.\n\nTest Steps: Test steps includes the following payload as a json format in body:\n\nMethod: PUT\n{\n\"delivery_time\" : \"2020-03-12T11:41:24+00:00\",\n\"delivery_location_lattitude\":\"84.35\",\n\"delivery_location_longitude\": \"56.32\",\n\"user_id\" : 420,\n\"field_delivery_id\":554\n}\nExpected Result:\n{\n    \"status\": true,\n    \"statusCode\": 201,\n    \"message\": \"Deliveries given successfully\"\n}\nActual Result:\n{\n    \"status\": true,\n    \"statusCode\": 201,\n    \"message\": \"Deliveries given successfully\"\n}\nStatus Code: 200 OK\n\nTest Result: PASS\n"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "TFS_96_Company admin should be able to assign delivery to the app user",
+			"item": [
+				{
+					"name": "TFS_62_A_Dashboard_User(Company admin)_Login_in_admin_panel",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5a1c703d-9dfc-497c-9f17-6e856fecb580",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//create variable for json Data",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"auth_token_company_admin\",jsonData.auth_token);",
+									"//Validate Schema for this URL",
+									"",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\",",
+									"            \"message\": \"Successfully logged in.\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"auth_token\",",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"auth_token\": {",
+									"            \"$id\": \"#/properties/auth_token\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The auth_token schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\"",
+									"            ]",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully logged in.\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"   var result=tv4.validateResult(pm.response.json(),schema);",
+									"});",
+									" ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"rajib@gmail.com\",\n    \"password\": \"Rajib1234\"\n\n}\n",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_auth}}/api/v1/field-force/auth/dashboard-user-login",
+							"host": [
+								"{{url_auth}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"dashboard-user-login"
+							]
+						},
+						"description": "BRD:\nDashboard User (Techserve4u/Company admin) login in\nadmin panel\n\nObjective:\nAs a company admin, I want to login to the\nadmin panel so that I can avail of services available\naccording to my member type\n\nSE: Shiblu Ahmad\nPO: Pranto Majumder\nQA: Samsur Rahman Rajib\nReviewer: Pranto Majumder.\n\nAcceptance Criteria:\nI will get my login credentials from super admin.\nIf I want to login as a company admin then I have to register as a company admin to the admin panel.\n\nDependency: \nRegister Dashboard User should be able to log in to the\nadmin panel.\n\nTest Steps:\nTest steps includes the following payload as a json format in body\n\nMethod: POST\nBody:\n{\n    \"email\": \"rajib@gmail.com\",\n    \"password\": \"Rajib1234\"\n\n}\nExpected Result:\n{\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5ODQwOTMsImlhdCI6MTYwMzk4MDQ5Mywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.OAIbMnWjnq0HZCqXW_gIWPY8tu0S_H1Irh7u_aTXbSU\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\nActual Result: \n{\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5ODQwOTMsImlhdCI6MTYwMzk4MDQ5Mywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.OAIbMnWjnq0HZCqXW_gIWPY8tu0S_H1Irh7u_aTXbSU\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\n\nStatus Code: 200 OK\n\nTest Result: Pass"
+					},
+					"response": []
+				},
+				{
+					"name": "TFS_96_Company admin should be able to assign delivery to the app user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "18cb4e4f-f563-4060-8b39-d15f03b6bf81",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//create variable for json Data",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"//Validate Schema for this URL",
+									"",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\",",
+									"            \"message\": \"Successfully logged in.\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"auth_token\",",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"auth_token\": {",
+									"            \"$id\": \"#/properties/auth_token\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The auth_token schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\"",
+									"            ]",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully logged in.\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"   var result=tv4.validateResult(pm.response.json(),schema);",
+									"});",
+									" ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token_company_admin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"title\":\"Delivery title 10\",\n\"assigned_delivery_time\":\"2020-04-03T15:36:14+00:00\",\n\"assigned_location_lattitude\":\"87.98\",\n\"assigned_location_longitude\":\"94.23\",\n\"client_address\":\"Jackson Heights\",\n\"client_name\":\"Yousuf\",\n\"user_id\":420,\n\"admin_id\":752,\n\"bill_amount\":222.00,\n\"is_paid\":false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_field_delivery}}/api/v1/field-force/delivery/deliveries",
+							"host": [
+								"{{url_field_delivery}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"delivery",
+								"deliveries"
+							]
+						},
+						"description": "BRD:\nCompany admin should be able to assign delivery to the app user\n\nObjective: As a company admin, I want to assign a delivery task to a user so that the task can be completed.\n\nSE: Shiblu Ahmad\nPO: Pranto Majumder\nQA: Samsur Rahman Rajib\nReviewer: Pranto Majumder.\n\nAcceptance Criteria: \nThere should be options on my web panel to assign a delivery task to the app users.\nThe assigned delivery webpage contains the following details: \nTitle\nAssigned Time\nPaid Task\nLat-Long\nClient Address\nClient Name\nSelect User\nSubmit and Cancel Button.\nDependency: \nCompany admin should be able to login with valid credentials.\nCompany admin should create a user before assign them.\n\nBody: Test steps includes the following payload as a json format in body:\n\nMethod: POST\n\n{\n\"title\":\"Delivery title 10\",\n\"assigned_delivery_time\":\"2020-04-03T15:36:14+00:00\",\n\"assigned_location_lattitude\":\"87.98\",\n\"assigned_location_longitude\":\"94.23\",\n\"client_address\":\"Jackson Heights\",\n\"client_name\":\"Yousuf\",\n\"user_id\":420,\n\"admin_id\":752,\n\"bill_amount\":222.00,\n\"is_paid\":false\n}\nExpected Result:\n{\n    \"status\": true,\n    \"statusCode\": 201,\n    \"data\": {\n        \"title\": \"Delivery title 10\",\n        \"assigned_delivery_time\": \"2020-04-03T15:36:14+00:00\",\n        \"assigned_location_lattitude\": \"87.98\",\n        \"assigned_location_longitude\": \"94.23\",\n        \"user_id\": 420,\n        \"delivery_status\": false,\n        \"payment_status\": false,\n        \"admin_id\": 752,\n        \"client_address\": \"Jackson Heights\",\n        \"client_name\": \"Yousuf\",\n        \"bill_amount\": 222,\n        \"is_paid\": false,\n        \"delivery_time\": null,\n        \"delivery_location_lattitude\": null,\n        \"delivery_location_longitude\": null,\n        \"note\": null,\n        \"album_id\": null,\n        \"id\": 562,\n        \"createdAt\": \"2020-11-25T23:29:32.208Z\",\n        \"updatedAt\": \"2020-11-25T23:29:32.208Z\"\n    },\n    \"message\": \"Delivery Assigned Successfully\"\n}\nActual Result:\n{\n    \"status\": true,\n    \"statusCode\": 201,\n    \"data\": {\n        \"title\": \"Delivery title 10\",\n        \"assigned_delivery_time\": \"2020-04-03T15:36:14+00:00\",\n        \"assigned_location_lattitude\": \"87.98\",\n        \"assigned_location_longitude\": \"94.23\",\n        \"user_id\": 420,\n        \"delivery_status\": false,\n        \"payment_status\": false,\n        \"admin_id\": 752,\n        \"client_address\": \"Jackson Heights\",\n        \"client_name\": \"Yousuf\",\n        \"bill_amount\": 222,\n        \"is_paid\": false,\n        \"delivery_time\": null,\n        \"delivery_location_lattitude\": null,\n        \"delivery_location_longitude\": null,\n        \"note\": null,\n        \"album_id\": null,\n        \"id\": 562,\n        \"createdAt\": \"2020-11-25T23:29:32.208Z\",\n        \"updatedAt\": \"2020-11-25T23:29:32.208Z\"\n    },\n    \"message\": \"Delivery Assigned Successfully\"\n}\nStatus Code: 201 CREATED\n\nTest Result: PASS\n"
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "704a1bd3-e1ca-4a51-9d2d-e6907b5e5e9a",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "7132e509-9770-4c0c-936c-9ba0fafc8ae3",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "TFS_97_Company admin should be able to get assigned delivery list on the web panel",
+			"item": [
+				{
+					"name": "TFS_62_A_Dashboard_User(Company admin)_Login_in_admin_panel Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e26e0bfd-4569-47d3-bb2c-a22b93e24dc5",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//create variable for json Data",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"auth_token_company_admin\",jsonData.auth_token);",
+									"//Validate Schema for this URL",
+									"",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\",",
+									"            \"message\": \"Successfully logged in.\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"auth_token\",",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"auth_token\": {",
+									"            \"$id\": \"#/properties/auth_token\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The auth_token schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\"",
+									"            ]",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully logged in.\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"   var result=tv4.validateResult(pm.response.json(),schema);",
+									"});",
+									" ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"rajib@gmail.com\",\n    \"password\": \"Rajib1234\"\n\n}\n",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_auth}}/api/v1/field-force/auth/dashboard-user-login",
+							"host": [
+								"{{url_auth}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"dashboard-user-login"
+							]
+						},
+						"description": "BRD:\nDashboard User (Techserve4u/Company admin) login in\nadmin panel\n\nObjective:\nAs a company admin, I want to login to the\nadmin panel so that I can avail of services available\naccording to my member type\n\nSE: Shiblu Ahmad\nPO: Pranto Majumder\nQA: Samsur Rahman Rajib\nReviewer: Pranto Majumder.\n\nAcceptance Criteria:\nI will get my login credentials from super admin.\nIf I want to login as a company admin then I have to register as a company admin to the admin panel.\n\nDependency: \nRegister Dashboard User should be able to log in to the\nadmin panel.\n\nTest Steps:\nTest steps includes the following payload as a json format in body\n\nMethod: POST\nBody:\n{\n    \"email\": \"rajib@gmail.com\",\n    \"password\": \"Rajib1234\"\n\n}\nExpected Result:\n{\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5ODQwOTMsImlhdCI6MTYwMzk4MDQ5Mywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.OAIbMnWjnq0HZCqXW_gIWPY8tu0S_H1Irh7u_aTXbSU\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\nActual Result: \n{\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5ODQwOTMsImlhdCI6MTYwMzk4MDQ5Mywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.OAIbMnWjnq0HZCqXW_gIWPY8tu0S_H1Irh7u_aTXbSU\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\n\nStatus Code: 200 OK\n\nTest Result: Pass"
+					},
+					"response": []
+				},
+				{
+					"name": "TFS_97_Company admin should be able to get assigned delivery list on the web panel",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7ae5b4d3-6c0c-40be-900c-425ac710a4b3",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//create variable for json Data",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"//Validate Schema for this URL",
+									"",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\",",
+									"            \"message\": \"Successfully logged in.\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"auth_token\",",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"auth_token\": {",
+									"            \"$id\": \"#/properties/auth_token\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The auth_token schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\"",
+									"            ]",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully logged in.\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"   var result=tv4.validateResult(pm.response.json(),schema);",
+									"});",
+									" ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token_company_admin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_field_delivery}}/api/v1/field-force/delivery/deliveries/admin/delivery-list/{{user_id_company_admin}}",
+							"host": [
+								"{{url_field_delivery}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"delivery",
+								"deliveries",
+								"admin",
+								"delivery-list",
+								"{{user_id_company_admin}}"
+							]
+						},
+						"description": "BRD:\nCompany admin should be able to get assigned delivery list on the web panel\n\nObjective: As a company admin, I want to see the assigned delivery list to the users by me so that I can check the status against the delivery or get updates.\n\nSE: Shiblu Ahmad\nPO: Pranto Majumder\nQA: Samsur Rahman Rajib\nReviewer: Pranto Majumder.\n\nAcceptance Criteria: \nCompany admin should able to see all the delivery tasks to the app users.\nI should be able to see the detailed information of the specific delivery task if I want.    \n\nDependencies:\nCompany admin should be able to login with valid credentials.\nCompany admin should create a user before assign them. \n\nTest Steps:\nTest steps includes the following payload as a json format in body\n\nMethod: GET\n\nExpected Result:\n{\n    \"status\": true,\n    \"statusCode\": 200,\n    \"data\": [\n        {\n            \"id\": 553,\n            \"title\": \"Delivery title 1\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"pulok\",\n            \"client_address\": \"East Elmhurst\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 100.45,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:08:37.342Z\",\n            \"updatedAt\": \"2020-11-25T23:08:37.342Z\",\n            \"admin_first_name\": \"Samsur\",\n            \"admin_last_name\": \"Rahman\",\n            \"admin_phone\": \"\",\n            \"user_first_name\": \"shah\",\n            \"user_last_name\": \"sultan\",\n            \"user_phone\": \"5857086014\"\n        },\n        {\n            \"id\": 554,\n            \"title\": \"Delivery title 2\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"rana\",\n            \"client_address\": \"Jamaica Hills\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 150.15,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:09:57.592Z\",\n            \"updatedAt\": \"2020-11-25T23:09:57.592Z\",\n            \"admin_first_name\": \"Samsur\",\n            \"admin_last_name\": \"Rahman\",\n            \"admin_phone\": \"\",\n            \"user_first_name\": \"shah\",\n            \"user_last_name\": \"sultan\",\n            \"user_phone\": \"5857086014\"\n        },\n        {\n            \"id\": 555,\n            \"title\": \"Delivery title 3\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"rayhan\",\n            \"client_address\": \"Sunnyside\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 150,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:18:47.805Z\",\n            \"updatedAt\": \"2020-11-25T23:18:47.805Z\",\n            \"admin_first_name\": \"Samsur\",\n            \"admin_last_name\": \"Rahman\",\n            \"admin_phone\": \"\",\n            \"user_first_name\": \"shah\",\n            \"user_last_name\": \"sultan\",\n            \"user_phone\": \"5857086014\"\n        },\n        {\n            \"id\": 556,\n            \"title\": \"Delivery title 4\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"gorge\",\n            \"client_address\": \"Astoria\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 150,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:21:24.538Z\",\n            \"updatedAt\": \"2020-11-25T23:21:24.538Z\",\n            \"admin_first_name\": \"Samsur\",\n            \"admin_last_name\": \"Rahman\",\n            \"admin_phone\": \"\",\n            \"user_first_name\": \"shah\",\n            \"user_last_name\": \"sultan\",\n            \"user_phone\": \"5857086014\"\n        },\n        {\n            \"id\": 557,\n            \"title\": \"Delivery title 5\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"smith\",\n            \"client_address\": \"Corona\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 25,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:23:03.084Z\",\n            \"updatedAt\": \"2020-11-25T23:23:03.084Z\",\n            \"admin_first_name\": \"Samsur\",\n            \"admin_last_name\": \"Rahman\",\n            \"admin_phone\": \"\",\n            \"user_first_name\": \"shah\",\n            \"user_last_name\": \"sultan\",\n            \"user_phone\": \"5857086014\"\n        },\n        {\n            \"id\": 558,\n            \"title\": \"Delivery title 6\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"ron\",\n            \"client_address\": \"Forest Hills\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 25,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:24:29.482Z\",\n            \"updatedAt\": \"2020-11-25T23:24:29.482Z\",\n            \"admin_first_name\": \"Samsur\",\n            \"admin_last_name\": \"Rahman\",\n            \"admin_phone\": \"\",\n            \"user_first_name\": \"shah\",\n            \"user_last_name\": \"sultan\",\n            \"user_phone\": \"5857086014\"\n        },\n        {\n            \"id\": 559,\n            \"title\": \"Delivery title 7\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"Hafiz\",\n            \"client_address\": \"Parkchester\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 300,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:25:53.271Z\",\n            \"updatedAt\": \"2020-11-25T23:25:53.271Z\",\n            \"admin_first_name\": \"Samsur\",\n            \"admin_last_name\": \"Rahman\",\n            \"admin_phone\": \"\",\n            \"user_first_name\": \"shah\",\n            \"user_last_name\": \"sultan\",\n            \"user_phone\": \"5857086014\"\n        },\n        {\n            \"id\": 560,\n            \"title\": \"Delivery title 8\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"Biplob\",\n            \"client_address\": \"Pelham Parkway\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 300,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:27:10.118Z\",\n            \"updatedAt\": \"2020-11-25T23:27:10.118Z\",\n            \"admin_first_name\": \"Samsur\",\n            \"admin_last_name\": \"Rahman\",\n            \"admin_phone\": \"\",\n            \"user_first_name\": \"shah\",\n            \"user_last_name\": \"sultan\",\n            \"user_phone\": \"5857086014\"\n        },\n        {\n            \"id\": 561,\n            \"title\": \"Delivery title 9\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"Irin\",\n            \"client_address\": \"Pelham Parkway\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 222,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:28:30.481Z\",\n            \"updatedAt\": \"2020-11-25T23:28:30.481Z\",\n            \"admin_first_name\": \"Samsur\",\n            \"admin_last_name\": \"Rahman\",\n            \"admin_phone\": \"\",\n            \"user_first_name\": \"shah\",\n            \"user_last_name\": \"sultan\",\n            \"user_phone\": \"5857086014\"\n        },\n        {\n            \"id\": 562,\n            \"title\": \"Delivery title 10\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"Yousuf\",\n            \"client_address\": \"Jackson Heights\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 222,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:29:32.208Z\",\n            \"updatedAt\": \"2020-11-25T23:29:32.208Z\",\n            \"admin_first_name\": \"Samsur\",\n            \"admin_last_name\": \"Rahman\",\n            \"admin_phone\": \"\",\n            \"user_first_name\": \"shah\",\n            \"user_last_name\": \"sultan\",\n            \"user_phone\": \"5857086014\"\n        }\n    ]\n}\nActual Result:\n{\n    \"status\": true,\n    \"statusCode\": 200,\n    \"data\": [\n        {\n            \"id\": 553,\n            \"title\": \"Delivery title 1\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"pulok\",\n            \"client_address\": \"East Elmhurst\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 100.45,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:08:37.342Z\",\n            \"updatedAt\": \"2020-11-25T23:08:37.342Z\",\n            \"admin_first_name\": \"Samsur\",\n            \"admin_last_name\": \"Rahman\",\n            \"admin_phone\": \"\",\n            \"user_first_name\": \"shah\",\n            \"user_last_name\": \"sultan\",\n            \"user_phone\": \"5857086014\"\n        },\n        {\n            \"id\": 554,\n            \"title\": \"Delivery title 2\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"rana\",\n            \"client_address\": \"Jamaica Hills\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 150.15,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:09:57.592Z\",\n            \"updatedAt\": \"2020-11-25T23:09:57.592Z\",\n            \"admin_first_name\": \"Samsur\",\n            \"admin_last_name\": \"Rahman\",\n            \"admin_phone\": \"\",\n            \"user_first_name\": \"shah\",\n            \"user_last_name\": \"sultan\",\n            \"user_phone\": \"5857086014\"\n        },\n        {\n            \"id\": 555,\n            \"title\": \"Delivery title 3\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"rayhan\",\n            \"client_address\": \"Sunnyside\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 150,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:18:47.805Z\",\n            \"updatedAt\": \"2020-11-25T23:18:47.805Z\",\n            \"admin_first_name\": \"Samsur\",\n            \"admin_last_name\": \"Rahman\",\n            \"admin_phone\": \"\",\n            \"user_first_name\": \"shah\",\n            \"user_last_name\": \"sultan\",\n            \"user_phone\": \"5857086014\"\n        },\n        {\n            \"id\": 556,\n            \"title\": \"Delivery title 4\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"gorge\",\n            \"client_address\": \"Astoria\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 150,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:21:24.538Z\",\n            \"updatedAt\": \"2020-11-25T23:21:24.538Z\",\n            \"admin_first_name\": \"Samsur\",\n            \"admin_last_name\": \"Rahman\",\n            \"admin_phone\": \"\",\n            \"user_first_name\": \"shah\",\n            \"user_last_name\": \"sultan\",\n            \"user_phone\": \"5857086014\"\n        },\n        {\n            \"id\": 557,\n            \"title\": \"Delivery title 5\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"smith\",\n            \"client_address\": \"Corona\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 25,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:23:03.084Z\",\n            \"updatedAt\": \"2020-11-25T23:23:03.084Z\",\n            \"admin_first_name\": \"Samsur\",\n            \"admin_last_name\": \"Rahman\",\n            \"admin_phone\": \"\",\n            \"user_first_name\": \"shah\",\n            \"user_last_name\": \"sultan\",\n            \"user_phone\": \"5857086014\"\n        },\n        {\n            \"id\": 558,\n            \"title\": \"Delivery title 6\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"ron\",\n            \"client_address\": \"Forest Hills\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 25,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:24:29.482Z\",\n            \"updatedAt\": \"2020-11-25T23:24:29.482Z\",\n            \"admin_first_name\": \"Samsur\",\n            \"admin_last_name\": \"Rahman\",\n            \"admin_phone\": \"\",\n            \"user_first_name\": \"shah\",\n            \"user_last_name\": \"sultan\",\n            \"user_phone\": \"5857086014\"\n        },\n        {\n            \"id\": 559,\n            \"title\": \"Delivery title 7\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"Hafiz\",\n            \"client_address\": \"Parkchester\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 300,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:25:53.271Z\",\n            \"updatedAt\": \"2020-11-25T23:25:53.271Z\",\n            \"admin_first_name\": \"Samsur\",\n            \"admin_last_name\": \"Rahman\",\n            \"admin_phone\": \"\",\n            \"user_first_name\": \"shah\",\n            \"user_last_name\": \"sultan\",\n            \"user_phone\": \"5857086014\"\n        },\n        {\n            \"id\": 560,\n            \"title\": \"Delivery title 8\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"Biplob\",\n            \"client_address\": \"Pelham Parkway\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 300,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:27:10.118Z\",\n            \"updatedAt\": \"2020-11-25T23:27:10.118Z\",\n            \"admin_first_name\": \"Samsur\",\n            \"admin_last_name\": \"Rahman\",\n            \"admin_phone\": \"\",\n            \"user_first_name\": \"shah\",\n            \"user_last_name\": \"sultan\",\n            \"user_phone\": \"5857086014\"\n        },\n        {\n            \"id\": 561,\n            \"title\": \"Delivery title 9\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"Irin\",\n            \"client_address\": \"Pelham Parkway\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 222,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:28:30.481Z\",\n            \"updatedAt\": \"2020-11-25T23:28:30.481Z\",\n            \"admin_first_name\": \"Samsur\",\n            \"admin_last_name\": \"Rahman\",\n            \"admin_phone\": \"\",\n            \"user_first_name\": \"shah\",\n            \"user_last_name\": \"sultan\",\n            \"user_phone\": \"5857086014\"\n        },\n        {\n            \"id\": 562,\n            \"title\": \"Delivery title 10\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"Yousuf\",\n            \"client_address\": \"Jackson Heights\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 222,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:29:32.208Z\",\n            \"updatedAt\": \"2020-11-25T23:29:32.208Z\",\n            \"admin_first_name\": \"Samsur\",\n            \"admin_last_name\": \"Rahman\",\n            \"admin_phone\": \"\",\n            \"user_first_name\": \"shah\",\n            \"user_last_name\": \"sultan\",\n            \"user_phone\": \"5857086014\"\n        }\n    ]\n}\nStatus Code: 200 OK\n\nTest Result: PASS\n\n\n"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "TFS_34_App user should be able to view the delivery list",
+			"item": [
+				{
+					"name": "TFS_58_App_user_should_be_able_to_login_the_FFM_mobile_app",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4a2f1aab-4963-4460-86e9-d8165ea5d4bf",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"//create variable for json Data",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"auth_token_app_user\",jsonData.auth_token);",
+									"",
+									"//Validate Schema for this URL",
+									"",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"data\": {",
+									"                \"company_address\": \"Deshi Ln, Jackson Heights\",",
+									"                \"company_id\": 414,",
+									"                \"company_name\": \"Kabab Park\",",
+									"                \"tin\": \"24411391\"",
+									"            },",
+									"            \"message\": \"Successfully registered company 'Kabab Park' .\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"data\",",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"data\": {",
+									"            \"$id\": \"#/properties/data\",",
+									"            \"type\": \"object\",",
+									"            \"title\": \"The data schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": {},",
+									"            \"examples\": [",
+									"                {",
+									"                    \"company_address\": \"Deshi Ln, Jackson Heights\",",
+									"                    \"company_id\": 414,",
+									"                    \"company_name\": \"Kabab Park\",",
+									"                    \"tin\": \"24411391\"",
+									"                }",
+									"            ],",
+									"            \"required\": [",
+									"                \"company_address\",",
+									"                \"company_id\",",
+									"                \"company_name\",",
+									"                \"tin\"",
+									"            ],",
+									"            \"properties\": {",
+									"                \"company_address\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_address\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The company_address schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"Deshi Ln, Jackson Heights\"",
+									"                    ]",
+									"                },",
+									"                \"company_id\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_id\",",
+									"                    \"type\": \"integer\",",
+									"                    \"title\": \"The company_id schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": 0,",
+									"                    \"examples\": [",
+									"                        414",
+									"                    ]",
+									"                },",
+									"                \"company_name\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_name\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The company_name schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"Kabab Park\"",
+									"                    ]",
+									"                },",
+									"                \"tin\": {",
+									"                    \"$id\": \"#/properties/data/properties/tin\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The tin schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"24411391\"",
+									"                    ]",
+									"                }",
+									"            },",
+									"            \"additionalProperties\": true",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully registered company 'Kabab Park' .\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"   var result=tv4.validateResult(pm.response.json(),schema);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone_number\": \"5857086014\",\n    \"firebase_id\": \"firebase_ididid\",\n    \"secret_text\": \"the_super_secret_text\",\n    \"phone_number_int\": \"5857086014\",\n    \"iso_code\": \"US\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_auth}}/api/v1/field-force/auth/user-login",
+							"host": [
+								"{{url_auth}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"user-login"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "BRD:\nApp user should be able to login the FFM mobile app\n\nObjective:\nAs an App user, I want to login to the FFM\napp so that I can avail services available to me\n\nSE: Shiblu Ahmad\nPO: Pranto Majumder\nQA: Samsur Rahman Rajib\nReviewer: Pranto Majumder.\n\nAcceptance Criteria:\nI should be able to login on the FFM mobile app through\nmy registered contact number.\nI will get an OTP code to verify my number.\n\nDependency: \nUsers should be registered from the company admin\npanel.  \n\nTest Steps: Test steps includes the following payload as a json format in body:\n\n{\n    \"phone_number\": \"5857086014\",\n    \"firebase_id\": \"firebase_ididid\",\n    \"secret_text\": \"the_super_secret_text\",\n    \"phone_number_int\": \"5857086014\",\n    \"iso_code\": \"US\"\n}\nEpected Result:\n{\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDU1NzQ5NjgsImlhdCI6MTYwNDk3MDE2OCwic3ViIjo0MjAsIm1vZHVsZXMiOltdLCJ1c2VyX3R5cGUiOiJHZW5lcmFsIiwibmFtZSI6InNoYWggc3VsdGFuIiwicGhvbmVfbnVtYmVyIjoiNTg1NzA4NjAxNCIsIm1lbWJlcl90eXBlIjozfQ.KcUnHhPR2nnyllQI2WLWJr8YrUwsr5mjDeYDP-o7SUk\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\nActual Result:\n{\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDU1NzQ5NjgsImlhdCI6MTYwNDk3MDE2OCwic3ViIjo0MjAsIm1vZHVsZXMiOltdLCJ1c2VyX3R5cGUiOiJHZW5lcmFsIiwibmFtZSI6InNoYWggc3VsdGFuIiwicGhvbmVfbnVtYmVyIjoiNTg1NzA4NjAxNCIsIm1lbWJlcl90eXBlIjozfQ.KcUnHhPR2nnyllQI2WLWJr8YrUwsr5mjDeYDP-o7SUk\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\nStatus Code: 200 OK\n\nTest Result: Pass\n"
+					},
+					"response": []
+				},
+				{
+					"name": "TFS_34_App user should be able to view the delivery list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c896b5c4-a978-4708-b566-810a90fdba34",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//create variable for json Data",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"//Validate Schema for this URL",
+									"",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\",",
+									"            \"message\": \"Successfully logged in.\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"auth_token\",",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"auth_token\": {",
+									"            \"$id\": \"#/properties/auth_token\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The auth_token schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\"",
+									"            ]",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully logged in.\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"   var result=tv4.validateResult(pm.response.json(),schema);",
+									"});",
+									" ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token_app_user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_field_delivery}}/api/v1/field-force/delivery/deliveries/user/deliveries-list/{{user_id_app_user}}",
+							"host": [
+								"{{url_field_delivery}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"delivery",
+								"deliveries",
+								"user",
+								"deliveries-list",
+								"{{user_id_app_user}}"
+							]
+						},
+						"description": "BRD:\nApp user should be able to view the delivery list\n\nObjective:\nAs an app user, I want to see the assigned delivery list so that I can complete the delivery task and can see also incomplete/complete tasks.\n\nSE: Shiblu Ahmad\nPO: Pranto Majumder\nQA: Samsur Rahman Rajib\nReviewer: Pranto Majumder.\n\nAcceptance Criteria:  \nI can see the assigned delivery task with details.\nAfter completing the delivery task I can give updates through the FFM app.\nThe company admin should be able to see the update of my action items. \n\nDependencies: \nRegistered users should be login to the FFM app.\nCompany admin should create users before assigning them.\n\nTest Steps: Test steps includes the following payload as a json format in body:\n\nMethod: GET\n\nExpected Result:\n{\n    \"status\": true,\n    \"statusCode\": 200,\n    \"data\": [\n        {\n            \"id\": 553,\n            \"title\": \"Delivery title 1\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"pulok\",\n            \"client_address\": \"East Elmhurst\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 100.45,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:08:37.342Z\",\n            \"updatedAt\": \"2020-11-25T23:08:37.342Z\"\n        },\n        {\n            \"id\": 554,\n            \"title\": \"Delivery title 2\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"rana\",\n            \"client_address\": \"Jamaica Hills\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 150.15,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:09:57.592Z\",\n            \"updatedAt\": \"2020-11-25T23:09:57.592Z\"\n        },\n        {\n            \"id\": 555,\n            \"title\": \"Delivery title 3\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"rayhan\",\n            \"client_address\": \"Sunnyside\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 150,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:18:47.805Z\",\n            \"updatedAt\": \"2020-11-25T23:18:47.805Z\"\n        },\n        {\n            \"id\": 556,\n            \"title\": \"Delivery title 4\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"gorge\",\n            \"client_address\": \"Astoria\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 150,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:21:24.538Z\",\n            \"updatedAt\": \"2020-11-25T23:21:24.538Z\"\n        },\n        {\n            \"id\": 557,\n            \"title\": \"Delivery title 5\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"smith\",\n            \"client_address\": \"Corona\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 25,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:23:03.084Z\",\n            \"updatedAt\": \"2020-11-25T23:23:03.084Z\"\n        },\n        {\n            \"id\": 558,\n            \"title\": \"Delivery title 6\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"ron\",\n            \"client_address\": \"Forest Hills\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 25,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:24:29.482Z\",\n            \"updatedAt\": \"2020-11-25T23:24:29.482Z\"\n        },\n        {\n            \"id\": 559,\n            \"title\": \"Delivery title 7\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"Hafiz\",\n            \"client_address\": \"Parkchester\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 300,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:25:53.271Z\",\n            \"updatedAt\": \"2020-11-25T23:25:53.271Z\"\n        },\n        {\n            \"id\": 560,\n            \"title\": \"Delivery title 8\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"Biplob\",\n            \"client_address\": \"Pelham Parkway\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 300,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:27:10.118Z\",\n            \"updatedAt\": \"2020-11-25T23:27:10.118Z\"\n        },\n        {\n            \"id\": 561,\n            \"title\": \"Delivery title 9\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"Irin\",\n            \"client_address\": \"Pelham Parkway\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 222,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:28:30.481Z\",\n            \"updatedAt\": \"2020-11-25T23:28:30.481Z\"\n        },\n        {\n            \"id\": 562,\n            \"title\": \"Delivery title 10\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"Yousuf\",\n            \"client_address\": \"Jackson Heights\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 222,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:29:32.208Z\",\n            \"updatedAt\": \"2020-11-25T23:29:32.208Z\"\n        }\n    ]\n}\nActual Result;\n{\n    \"status\": true,\n    \"statusCode\": 200,\n    \"data\": [\n        {\n            \"id\": 553,\n            \"title\": \"Delivery title 1\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"pulok\",\n            \"client_address\": \"East Elmhurst\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 100.45,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:08:37.342Z\",\n            \"updatedAt\": \"2020-11-25T23:08:37.342Z\"\n        },\n        {\n            \"id\": 554,\n            \"title\": \"Delivery title 2\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"rana\",\n            \"client_address\": \"Jamaica Hills\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 150.15,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:09:57.592Z\",\n            \"updatedAt\": \"2020-11-25T23:09:57.592Z\"\n        },\n        {\n            \"id\": 555,\n            \"title\": \"Delivery title 3\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"rayhan\",\n            \"client_address\": \"Sunnyside\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 150,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:18:47.805Z\",\n            \"updatedAt\": \"2020-11-25T23:18:47.805Z\"\n        },\n        {\n            \"id\": 556,\n            \"title\": \"Delivery title 4\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"gorge\",\n            \"client_address\": \"Astoria\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 150,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:21:24.538Z\",\n            \"updatedAt\": \"2020-11-25T23:21:24.538Z\"\n        },\n        {\n            \"id\": 557,\n            \"title\": \"Delivery title 5\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"smith\",\n            \"client_address\": \"Corona\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 25,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:23:03.084Z\",\n            \"updatedAt\": \"2020-11-25T23:23:03.084Z\"\n        },\n        {\n            \"id\": 558,\n            \"title\": \"Delivery title 6\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"ron\",\n            \"client_address\": \"Forest Hills\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 25,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:24:29.482Z\",\n            \"updatedAt\": \"2020-11-25T23:24:29.482Z\"\n        },\n        {\n            \"id\": 559,\n            \"title\": \"Delivery title 7\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"Hafiz\",\n            \"client_address\": \"Parkchester\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 300,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:25:53.271Z\",\n            \"updatedAt\": \"2020-11-25T23:25:53.271Z\"\n        },\n        {\n            \"id\": 560,\n            \"title\": \"Delivery title 8\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"Biplob\",\n            \"client_address\": \"Pelham Parkway\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 300,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:27:10.118Z\",\n            \"updatedAt\": \"2020-11-25T23:27:10.118Z\"\n        },\n        {\n            \"id\": 561,\n            \"title\": \"Delivery title 9\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"Irin\",\n            \"client_address\": \"Pelham Parkway\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 222,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:28:30.481Z\",\n            \"updatedAt\": \"2020-11-25T23:28:30.481Z\"\n        },\n        {\n            \"id\": 562,\n            \"title\": \"Delivery title 10\",\n            \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n            \"assigned_location_lattitude\": \"87.98\",\n            \"assigned_location_longitude\": \"94.23\",\n            \"client_name\": \"Yousuf\",\n            \"client_address\": \"Jackson Heights\",\n            \"admin_id\": 752,\n            \"delivery_time\": null,\n            \"delivery_location_lattitude\": null,\n            \"delivery_location_longitude\": null,\n            \"delivery_status\": false,\n            \"payment_status\": false,\n            \"bill_amount\": 222,\n            \"is_paid\": false,\n            \"note\": null,\n            \"user_id\": 420,\n            \"album_id\": null,\n            \"createdAt\": \"2020-11-25T23:29:32.208Z\",\n            \"updatedAt\": \"2020-11-25T23:29:32.208Z\"\n        }\n    ]\n}\nStatus code; 200 Ok\n\nTest Result: PASS\n\n\n\n\n\n\n\n"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "TFS_30_App user should be able to give feedback of delivery",
+			"item": [
+				{
+					"name": "TFS_58_App_user_should_be_able_to_login_the_FFM_mobile_app",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5f6ec796-8a2f-439c-9e20-6c721a0c23cb",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"//create variable for json Data",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"auth_token_app_user\",jsonData.auth_token);",
+									"",
+									"//Validate Schema for this URL",
+									"",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"data\": {",
+									"                \"company_address\": \"Deshi Ln, Jackson Heights\",",
+									"                \"company_id\": 414,",
+									"                \"company_name\": \"Kabab Park\",",
+									"                \"tin\": \"24411391\"",
+									"            },",
+									"            \"message\": \"Successfully registered company 'Kabab Park' .\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"data\",",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"data\": {",
+									"            \"$id\": \"#/properties/data\",",
+									"            \"type\": \"object\",",
+									"            \"title\": \"The data schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": {},",
+									"            \"examples\": [",
+									"                {",
+									"                    \"company_address\": \"Deshi Ln, Jackson Heights\",",
+									"                    \"company_id\": 414,",
+									"                    \"company_name\": \"Kabab Park\",",
+									"                    \"tin\": \"24411391\"",
+									"                }",
+									"            ],",
+									"            \"required\": [",
+									"                \"company_address\",",
+									"                \"company_id\",",
+									"                \"company_name\",",
+									"                \"tin\"",
+									"            ],",
+									"            \"properties\": {",
+									"                \"company_address\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_address\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The company_address schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"Deshi Ln, Jackson Heights\"",
+									"                    ]",
+									"                },",
+									"                \"company_id\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_id\",",
+									"                    \"type\": \"integer\",",
+									"                    \"title\": \"The company_id schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": 0,",
+									"                    \"examples\": [",
+									"                        414",
+									"                    ]",
+									"                },",
+									"                \"company_name\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_name\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The company_name schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"Kabab Park\"",
+									"                    ]",
+									"                },",
+									"                \"tin\": {",
+									"                    \"$id\": \"#/properties/data/properties/tin\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The tin schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"24411391\"",
+									"                    ]",
+									"                }",
+									"            },",
+									"            \"additionalProperties\": true",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully registered company 'Kabab Park' .\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"   var result=tv4.validateResult(pm.response.json(),schema);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone_number\": \"5857086014\",\n    \"firebase_id\": \"firebase_ididid\",\n    \"secret_text\": \"the_super_secret_text\",\n    \"phone_number_int\": \"5857086014\",\n    \"iso_code\": \"US\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_auth}}/api/v1/field-force/auth/user-login",
+							"host": [
+								"{{url_auth}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"user-login"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "BRD:\nApp user should be able to login the FFM mobile app\n\nObjective:\nAs an App user, I want to login to the FFM\napp so that I can avail services available to me\n\nSE: Shiblu Ahmad\nPO: Pranto Majumder\nQA: Samsur Rahman Rajib\nReviewer: Pranto Majumder.\n\nAcceptance Criteria:\nI should be able to login on the FFM mobile app through\nmy registered contact number.\nI will get an OTP code to verify my number.\n\nDependency: \nUsers should be registered from the company admin\npanel.  \n\nTest Steps: Test steps includes the following payload as a json format in body:\n\n{\n    \"phone_number\": \"5857086014\",\n    \"firebase_id\": \"firebase_ididid\",\n    \"secret_text\": \"the_super_secret_text\",\n    \"phone_number_int\": \"5857086014\",\n    \"iso_code\": \"US\"\n}\nEpected Result:\n{\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDU1NzQ5NjgsImlhdCI6MTYwNDk3MDE2OCwic3ViIjo0MjAsIm1vZHVsZXMiOltdLCJ1c2VyX3R5cGUiOiJHZW5lcmFsIiwibmFtZSI6InNoYWggc3VsdGFuIiwicGhvbmVfbnVtYmVyIjoiNTg1NzA4NjAxNCIsIm1lbWJlcl90eXBlIjozfQ.KcUnHhPR2nnyllQI2WLWJr8YrUwsr5mjDeYDP-o7SUk\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\nActual Result:\n{\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDU1NzQ5NjgsImlhdCI6MTYwNDk3MDE2OCwic3ViIjo0MjAsIm1vZHVsZXMiOltdLCJ1c2VyX3R5cGUiOiJHZW5lcmFsIiwibmFtZSI6InNoYWggc3VsdGFuIiwicGhvbmVfbnVtYmVyIjoiNTg1NzA4NjAxNCIsIm1lbWJlcl90eXBlIjozfQ.KcUnHhPR2nnyllQI2WLWJr8YrUwsr5mjDeYDP-o7SUk\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\nStatus Code: 200 OK\n\nTest Result: Pass\n"
+					},
+					"response": []
+				},
+				{
+					"name": "TFS_30_App user should be able to give feedback of delivery",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c2c67c88-8783-45a9-ad66-ac80a773f4b0",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//create variable for json Data",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"//Validate Schema for this URL",
+									"",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\",",
+									"            \"message\": \"Successfully logged in.\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"auth_token\",",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"auth_token\": {",
+									"            \"$id\": \"#/properties/auth_token\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The auth_token schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\"",
+									"            ]",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully logged in.\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"   var result=tv4.validateResult(pm.response.json(),schema);",
+									"});",
+									" ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token_app_user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"user_id\":420,\n\"field_delivery_id\":554,\n\"feedback\":\"Successfully delivered to BIDEN\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_field_delivery}}/api/v1/field-force/delivery/deliveries/user/give-delivery-feedback",
+							"host": [
+								"{{url_field_delivery}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"delivery",
+								"deliveries",
+								"user",
+								"give-delivery-feedback"
+							]
+						},
+						"description": "BRD:\nApp user should be able to give feedback of delivery\n\nObjective: As an app  user, I want to submit/give feedback against particular delivery so that I can inform any issues or not to the company admin\n\nSE: Shiblu Ahmad\nPO: Pranto Majumder\nQA: Samsur Rahman Rajib\nReviewer: Pranto Majumder.\n\nAcceptance Criteria: \nAfter completing the action item of delivery then I should be able to give feedback if I want. \nIf I don't have any feedback or I don't want to give any note or feedback, I can do that also because it's not mandatory.\nDependency: \nApp users should be able to log in FFM app through valid credentials.\n\nTest Steps: Test steps includes the following payload as a json format in body:\n\nMethod: Post\n\nBody: \n{\n\"user_id\":420,\n\"field_delivery_id\":554,\n\"feedback\":\"Successfully delivered to BIDEN\"\n}\nExpected Result:\n{\n    \"status\": true,\n    \"statusCode\": 200,\n    \"message\": \"Feedback given successfully\"\n}\nActual Result:\n{\n    \"status\": true,\n    \"statusCode\": 200,\n    \"message\": \"Feedback given successfully\"\n}\nStatus Code: 201 CREATED\n\nTest Result: PASS\n"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "TFS_31_App user should be able to see the specific delivery details",
+			"item": [
+				{
+					"name": "TFS_58_App_user_should_be_able_to_login_the_FFM_mobile_app",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3f488c70-065d-4dc1-b258-60908fbaebca",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"//create variable for json Data",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"auth_token_app_user\",jsonData.auth_token);",
+									"",
+									"//Validate Schema for this URL",
+									"",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"data\": {",
+									"                \"company_address\": \"Deshi Ln, Jackson Heights\",",
+									"                \"company_id\": 414,",
+									"                \"company_name\": \"Kabab Park\",",
+									"                \"tin\": \"24411391\"",
+									"            },",
+									"            \"message\": \"Successfully registered company 'Kabab Park' .\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"data\",",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"data\": {",
+									"            \"$id\": \"#/properties/data\",",
+									"            \"type\": \"object\",",
+									"            \"title\": \"The data schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": {},",
+									"            \"examples\": [",
+									"                {",
+									"                    \"company_address\": \"Deshi Ln, Jackson Heights\",",
+									"                    \"company_id\": 414,",
+									"                    \"company_name\": \"Kabab Park\",",
+									"                    \"tin\": \"24411391\"",
+									"                }",
+									"            ],",
+									"            \"required\": [",
+									"                \"company_address\",",
+									"                \"company_id\",",
+									"                \"company_name\",",
+									"                \"tin\"",
+									"            ],",
+									"            \"properties\": {",
+									"                \"company_address\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_address\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The company_address schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"Deshi Ln, Jackson Heights\"",
+									"                    ]",
+									"                },",
+									"                \"company_id\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_id\",",
+									"                    \"type\": \"integer\",",
+									"                    \"title\": \"The company_id schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": 0,",
+									"                    \"examples\": [",
+									"                        414",
+									"                    ]",
+									"                },",
+									"                \"company_name\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_name\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The company_name schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"Kabab Park\"",
+									"                    ]",
+									"                },",
+									"                \"tin\": {",
+									"                    \"$id\": \"#/properties/data/properties/tin\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The tin schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"24411391\"",
+									"                    ]",
+									"                }",
+									"            },",
+									"            \"additionalProperties\": true",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully registered company 'Kabab Park' .\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"   var result=tv4.validateResult(pm.response.json(),schema);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone_number\": \"5857086014\",\n    \"firebase_id\": \"firebase_ididid\",\n    \"secret_text\": \"the_super_secret_text\",\n    \"phone_number_int\": \"5857086014\",\n    \"iso_code\": \"US\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_auth}}/api/v1/field-force/auth/user-login",
+							"host": [
+								"{{url_auth}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"user-login"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "BRD:\nApp user should be able to login the FFM mobile app\n\nObjective:\nAs an App user, I want to login to the FFM\napp so that I can avail services available to me\n\nSE: Shiblu Ahmad\nPO: Pranto Majumder\nQA: Samsur Rahman Rajib\nReviewer: Pranto Majumder.\n\nAcceptance Criteria:\nI should be able to login on the FFM mobile app through\nmy registered contact number.\nI will get an OTP code to verify my number.\n\nDependency: \nUsers should be registered from the company admin\npanel.  \n\nTest Steps: Test steps includes the following payload as a json format in body:\n\n{\n    \"phone_number\": \"5857086014\",\n    \"firebase_id\": \"firebase_ididid\",\n    \"secret_text\": \"the_super_secret_text\",\n    \"phone_number_int\": \"5857086014\",\n    \"iso_code\": \"US\"\n}\nEpected Result:\n{\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDU1NzQ5NjgsImlhdCI6MTYwNDk3MDE2OCwic3ViIjo0MjAsIm1vZHVsZXMiOltdLCJ1c2VyX3R5cGUiOiJHZW5lcmFsIiwibmFtZSI6InNoYWggc3VsdGFuIiwicGhvbmVfbnVtYmVyIjoiNTg1NzA4NjAxNCIsIm1lbWJlcl90eXBlIjozfQ.KcUnHhPR2nnyllQI2WLWJr8YrUwsr5mjDeYDP-o7SUk\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\nActual Result:\n{\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDU1NzQ5NjgsImlhdCI6MTYwNDk3MDE2OCwic3ViIjo0MjAsIm1vZHVsZXMiOltdLCJ1c2VyX3R5cGUiOiJHZW5lcmFsIiwibmFtZSI6InNoYWggc3VsdGFuIiwicGhvbmVfbnVtYmVyIjoiNTg1NzA4NjAxNCIsIm1lbWJlcl90eXBlIjozfQ.KcUnHhPR2nnyllQI2WLWJr8YrUwsr5mjDeYDP-o7SUk\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\nStatus Code: 200 OK\n\nTest Result: Pass\n"
+					},
+					"response": []
+				},
+				{
+					"name": "TFS_31_App user should be able to see the specific delivery details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "841c3e4f-3177-41bc-964c-1c192385608f",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//create variable for json Data",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"//Validate Schema for this URL",
+									"",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\",",
+									"            \"message\": \"Successfully logged in.\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"auth_token\",",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"auth_token\": {",
+									"            \"$id\": \"#/properties/auth_token\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The auth_token schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\"",
+									"            ]",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully logged in.\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"   var result=tv4.validateResult(pm.response.json(),schema);",
+									"});",
+									" ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token_app_user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_field_delivery}}/api/v1/field-force/delivery/deliveries/user/delivery-details/554",
+							"host": [
+								"{{url_field_delivery}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"delivery",
+								"deliveries",
+								"user",
+								"delivery-details",
+								"554"
+							]
+						},
+						"description": "BRD:\nApp user should be able to see the specific delivery details\n\nObjective: As an app user, I want to see the assigned delivery details so that I can complete my task.\n\nSE: Shiblu Ahmad\nPO: Pranto Majumder\nQA: Samsur Rahman Rajib\nReviewer: Pranto Majumder.\n\nAcceptance Criteria:\nI can see the full details of the specific delivery action item.\nI can be assured where I have to complete the action item and all the processes.\nThere should be some information like: \nThe assigned delivery task is paid or not.\nClient name, the address should be there.\nThe title and description of each action item should be there.\n\nDependency:\nRegistered app users should be able to log in to the FFM app through valid credentials.\n\nTest Steps: Test steps includes the following payload as a json format in body:\n\nMethod: GET\n\nExpected Result:\n{\n    \"status\": true,\n    \"statusCode\": 302,\n    \"data\": {\n        \"deliveries\": [\n            {\n                \"id\": 554,\n                \"title\": \"Delivery title 2\",\n                \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n                \"assigned_location_lattitude\": \"87.98\",\n                \"assigned_location_longitude\": \"94.23\",\n                \"client_name\": \"rana\",\n                \"client_address\": \"Jamaica Hills\",\n                \"admin_id\": 752,\n                \"delivery_time\": \"2020-03-12T11:41:24.000Z\",\n                \"delivery_location_lattitude\": \"84.35\",\n                \"delivery_location_longitude\": \"56.32\",\n                \"delivery_status\": true,\n                \"payment_status\": false,\n                \"bill_amount\": 150.15,\n                \"is_paid\": false,\n                \"note\": \"Successfully delivered to BIDEN\",\n                \"user_id\": 420,\n                \"album_id\": 74,\n                \"createdAt\": \"2020-11-25T23:09:57.592Z\",\n                \"updatedAt\": \"2020-11-25T23:09:57.592Z\",\n                \"user_name\": \"shah\",\n                \"admin_name\": \"Samsur\"\n            }\n        ],\n        \"photo_urls\": [\n            []\n        ]\n    }\n}Actual Result;\n{\n    \"status\": true,\n    \"statusCode\": 302,\n    \"data\": {\n        \"deliveries\": [\n            {\n                \"id\": 554,\n                \"title\": \"Delivery title 2\",\n                \"assigned_delivery_time\": \"2020-04-03T15:36:14.000Z\",\n                \"assigned_location_lattitude\": \"87.98\",\n                \"assigned_location_longitude\": \"94.23\",\n                \"client_name\": \"rana\",\n                \"client_address\": \"Jamaica Hills\",\n                \"admin_id\": 752,\n                \"delivery_time\": \"2020-03-12T11:41:24.000Z\",\n                \"delivery_location_lattitude\": \"84.35\",\n                \"delivery_location_longitude\": \"56.32\",\n                \"delivery_status\": true,\n                \"payment_status\": false,\n                \"bill_amount\": 150.15,\n                \"is_paid\": false,\n                \"note\": \"Successfully delivered to BIDEN\",\n                \"user_id\": 420,\n                \"album_id\": 74,\n                \"createdAt\": \"2020-11-25T23:09:57.592Z\",\n                \"updatedAt\": \"2020-11-25T23:09:57.592Z\",\n                \"user_name\": \"shah\",\n                \"admin_name\": \"Samsur\"\n            }\n        ],\n        \"photo_urls\": [\n            []\n        ]\n    }\n}\nStatus Code: 200 OK\n\nTest Result: PASS\n\n"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "TFS_32_App user should be able to update payment status of paid delivery",
+			"item": [
+				{
+					"name": "TFS_58_App_user_should_be_able_to_login_the_FFM_mobile_app",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7d27f25d-1424-4b68-a7e5-74994c143310",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"//create variable for json Data",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"auth_token_app_user\",jsonData.auth_token);",
+									"",
+									"//Validate Schema for this URL",
+									"",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"data\": {",
+									"                \"company_address\": \"Deshi Ln, Jackson Heights\",",
+									"                \"company_id\": 414,",
+									"                \"company_name\": \"Kabab Park\",",
+									"                \"tin\": \"24411391\"",
+									"            },",
+									"            \"message\": \"Successfully registered company 'Kabab Park' .\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"data\",",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"data\": {",
+									"            \"$id\": \"#/properties/data\",",
+									"            \"type\": \"object\",",
+									"            \"title\": \"The data schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": {},",
+									"            \"examples\": [",
+									"                {",
+									"                    \"company_address\": \"Deshi Ln, Jackson Heights\",",
+									"                    \"company_id\": 414,",
+									"                    \"company_name\": \"Kabab Park\",",
+									"                    \"tin\": \"24411391\"",
+									"                }",
+									"            ],",
+									"            \"required\": [",
+									"                \"company_address\",",
+									"                \"company_id\",",
+									"                \"company_name\",",
+									"                \"tin\"",
+									"            ],",
+									"            \"properties\": {",
+									"                \"company_address\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_address\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The company_address schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"Deshi Ln, Jackson Heights\"",
+									"                    ]",
+									"                },",
+									"                \"company_id\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_id\",",
+									"                    \"type\": \"integer\",",
+									"                    \"title\": \"The company_id schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": 0,",
+									"                    \"examples\": [",
+									"                        414",
+									"                    ]",
+									"                },",
+									"                \"company_name\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_name\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The company_name schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"Kabab Park\"",
+									"                    ]",
+									"                },",
+									"                \"tin\": {",
+									"                    \"$id\": \"#/properties/data/properties/tin\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The tin schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"24411391\"",
+									"                    ]",
+									"                }",
+									"            },",
+									"            \"additionalProperties\": true",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully registered company 'Kabab Park' .\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"   var result=tv4.validateResult(pm.response.json(),schema);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone_number\": \"5857086014\",\n    \"firebase_id\": \"firebase_ididid\",\n    \"secret_text\": \"the_super_secret_text\",\n    \"phone_number_int\": \"5857086014\",\n    \"iso_code\": \"US\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_auth}}/api/v1/field-force/auth/user-login",
+							"host": [
+								"{{url_auth}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"user-login"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "BRD:\nApp user should be able to login the FFM mobile app\n\nObjective:\nAs an App user, I want to login to the FFM\napp so that I can avail services available to me\n\nSE: Shiblu Ahmad\nPO: Pranto Majumder\nQA: Samsur Rahman Rajib\nReviewer: Pranto Majumder.\n\nAcceptance Criteria:\nI should be able to login on the FFM mobile app through\nmy registered contact number.\nI will get an OTP code to verify my number.\n\nDependency: \nUsers should be registered from the company admin\npanel.  \n\nTest Steps: Test steps includes the following payload as a json format in body:\n\n{\n    \"phone_number\": \"5857086014\",\n    \"firebase_id\": \"firebase_ididid\",\n    \"secret_text\": \"the_super_secret_text\",\n    \"phone_number_int\": \"5857086014\",\n    \"iso_code\": \"US\"\n}\nEpected Result:\n{\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDU1NzQ5NjgsImlhdCI6MTYwNDk3MDE2OCwic3ViIjo0MjAsIm1vZHVsZXMiOltdLCJ1c2VyX3R5cGUiOiJHZW5lcmFsIiwibmFtZSI6InNoYWggc3VsdGFuIiwicGhvbmVfbnVtYmVyIjoiNTg1NzA4NjAxNCIsIm1lbWJlcl90eXBlIjozfQ.KcUnHhPR2nnyllQI2WLWJr8YrUwsr5mjDeYDP-o7SUk\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\nActual Result:\n{\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDU1NzQ5NjgsImlhdCI6MTYwNDk3MDE2OCwic3ViIjo0MjAsIm1vZHVsZXMiOltdLCJ1c2VyX3R5cGUiOiJHZW5lcmFsIiwibmFtZSI6InNoYWggc3VsdGFuIiwicGhvbmVfbnVtYmVyIjoiNTg1NzA4NjAxNCIsIm1lbWJlcl90eXBlIjozfQ.KcUnHhPR2nnyllQI2WLWJr8YrUwsr5mjDeYDP-o7SUk\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\nStatus Code: 200 OK\n\nTest Result: Pass\n"
+					},
+					"response": []
+				},
+				{
+					"name": "TFS_32_App user should be able to update payment status of paid delivery",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "956a63a4-20b6-47f6-b450-798cf19d8a1b",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//create variable for json Data",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"//Validate Schema for this URL",
+									"",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\",",
+									"            \"message\": \"Successfully logged in.\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"auth_token\",",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"auth_token\": {",
+									"            \"$id\": \"#/properties/auth_token\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The auth_token schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\"",
+									"            ]",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully logged in.\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"   var result=tv4.validateResult(pm.response.json(),schema);",
+									"});",
+									" ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token_app_user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"user_id\":420,\n\"field_delivery_id\":554\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_field_delivery}}/api/v1/field-force/delivery/deliveries/user/update-delivery-payment-status",
+							"host": [
+								"{{url_field_delivery}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"delivery",
+								"deliveries",
+								"user",
+								"update-delivery-payment-status"
+							]
+						},
+						"description": "BRD:\nApp user should be able to update payment status of paid delivery\n\nObjective: As an app user, I want to update the payment status from the FFM app for the assigned delivery task so that I can complete the assigned task to me.\n\nSE: Shiblu Ahmad\nPO: Pranto Majumder\nQA: Samsur Rahman Rajib\nReviewer: Pranto Majumder.\n\nAcceptance Criteria: \nI can update the payment status if it becomes a paid delivery task.\nI should be able to see the delivery task details on the FFM app. \nDependency:\nApp users should be able to log in to the FFM through valid credentials.\n\nTest Steps: Test steps includes the following payload as a json format in body:\n\nMethod: POST\n\nBody:\n{\n\"user_id\":420,\n\"field_delivery_id\":554\n}\nExpected result:\n{\n    \"status\": true,\n    \"statusCode\": 200,\n    \"message\": \"Payment status update successfully\"\n}\nActual result;\n{\n    \"status\": true,\n    \"statusCode\": 200,\n    \"message\": \"Payment status update successfully\"\n}\nStatus Code: 201 CREATED\n\nTest Result: PASS\n"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "TFS_33_App user should be able to upload delivery image",
+			"item": [
+				{
+					"name": "TFS_58_App_user_should_be_able_to_login_the_FFM_mobile_app Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c3488c19-6039-43df-b000-7cd783b2ca21",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"//create variable for json Data",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"auth_token_app_user\",jsonData.auth_token);",
+									"",
+									"//Validate Schema for this URL",
+									"",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"data\": {",
+									"                \"company_address\": \"Deshi Ln, Jackson Heights\",",
+									"                \"company_id\": 414,",
+									"                \"company_name\": \"Kabab Park\",",
+									"                \"tin\": \"24411391\"",
+									"            },",
+									"            \"message\": \"Successfully registered company 'Kabab Park' .\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"data\",",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"data\": {",
+									"            \"$id\": \"#/properties/data\",",
+									"            \"type\": \"object\",",
+									"            \"title\": \"The data schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": {},",
+									"            \"examples\": [",
+									"                {",
+									"                    \"company_address\": \"Deshi Ln, Jackson Heights\",",
+									"                    \"company_id\": 414,",
+									"                    \"company_name\": \"Kabab Park\",",
+									"                    \"tin\": \"24411391\"",
+									"                }",
+									"            ],",
+									"            \"required\": [",
+									"                \"company_address\",",
+									"                \"company_id\",",
+									"                \"company_name\",",
+									"                \"tin\"",
+									"            ],",
+									"            \"properties\": {",
+									"                \"company_address\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_address\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The company_address schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"Deshi Ln, Jackson Heights\"",
+									"                    ]",
+									"                },",
+									"                \"company_id\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_id\",",
+									"                    \"type\": \"integer\",",
+									"                    \"title\": \"The company_id schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": 0,",
+									"                    \"examples\": [",
+									"                        414",
+									"                    ]",
+									"                },",
+									"                \"company_name\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_name\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The company_name schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"Kabab Park\"",
+									"                    ]",
+									"                },",
+									"                \"tin\": {",
+									"                    \"$id\": \"#/properties/data/properties/tin\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The tin schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"24411391\"",
+									"                    ]",
+									"                }",
+									"            },",
+									"            \"additionalProperties\": true",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully registered company 'Kabab Park' .\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"   var result=tv4.validateResult(pm.response.json(),schema);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone_number\": \"5857086014\",\n    \"firebase_id\": \"firebase_ididid\",\n    \"secret_text\": \"the_super_secret_text\",\n    \"phone_number_int\": \"5857086014\",\n    \"iso_code\": \"US\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_auth}}/api/v1/field-force/auth/user-login",
+							"host": [
+								"{{url_auth}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"user-login"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "BRD:\nApp user should be able to login the FFM mobile app\n\nObjective:\nAs an App user, I want to login to the FFM\napp so that I can avail services available to me\n\nSE: Shiblu Ahmad\nPO: Pranto Majumder\nQA: Samsur Rahman Rajib\nReviewer: Pranto Majumder.\n\nAcceptance Criteria:\nI should be able to login on the FFM mobile app through\nmy registered contact number.\nI will get an OTP code to verify my number.\n\nDependency: \nUsers should be registered from the company admin\npanel.  \n\nTest Steps: Test steps includes the following payload as a json format in body:\n\n{\n    \"phone_number\": \"5857086014\",\n    \"firebase_id\": \"firebase_ididid\",\n    \"secret_text\": \"the_super_secret_text\",\n    \"phone_number_int\": \"5857086014\",\n    \"iso_code\": \"US\"\n}\nEpected Result:\n{\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDU1NzQ5NjgsImlhdCI6MTYwNDk3MDE2OCwic3ViIjo0MjAsIm1vZHVsZXMiOltdLCJ1c2VyX3R5cGUiOiJHZW5lcmFsIiwibmFtZSI6InNoYWggc3VsdGFuIiwicGhvbmVfbnVtYmVyIjoiNTg1NzA4NjAxNCIsIm1lbWJlcl90eXBlIjozfQ.KcUnHhPR2nnyllQI2WLWJr8YrUwsr5mjDeYDP-o7SUk\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\nActual Result:\n{\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDU1NzQ5NjgsImlhdCI6MTYwNDk3MDE2OCwic3ViIjo0MjAsIm1vZHVsZXMiOltdLCJ1c2VyX3R5cGUiOiJHZW5lcmFsIiwibmFtZSI6InNoYWggc3VsdGFuIiwicGhvbmVfbnVtYmVyIjoiNTg1NzA4NjAxNCIsIm1lbWJlcl90eXBlIjozfQ.KcUnHhPR2nnyllQI2WLWJr8YrUwsr5mjDeYDP-o7SUk\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\nStatus Code: 200 OK\n\nTest Result: Pass\n"
+					},
+					"response": []
+				},
+				{
+					"name": "TFS_33_App user should be able to upload delivery image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token_app_user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/Users/rajib/Desktop/Screen Shot 2020-11-25 at 7.55.35 PM.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url_field_delivery}}/api/v1/field-force/delivery/deliveries/avatar/upload/420/554",
+							"host": [
+								"{{url_field_delivery}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"delivery",
+								"deliveries",
+								"avatar",
+								"upload",
+								"420",
+								"554"
+							]
+						},
+						"description": "Objective: As an app user, I want to upload an image against the completed delivery so that I can assure the company admin that this delivery is completed successfully.\n\nAcceptance Criteria: \nI should be able to take a picture of the delivery place or invoice.\nAfter uploading the image I can complete the delivery action item and update on the FFM app.\nDependency:\nApp users should be able to log in to the FFM through valid credentials.\n\nSteps: \nOpen postman\nOpen Folder (Field Force Management)\nOpen a new tab \nAdd API URL\nSelect body, Select \"raw\"\nPaste payload in the body.\nSelect method: POST \nSelect the Authorization tab\nSelect type: Bearer Token\nPaste the token: (User login API)\nHit the \"Send\" button to execute the API\n\nAPI Specification: \nAPI URL:  /api/v1/field-force/delivery/deliveries/avatar/upload/{user_id}/{delivery_id}\nMethod: Post\n\n(Note: For user_id as a registered user you need to login through \"3.2 User Login\" API then authenticate the user through \"authenticate user\" API. And for deliver_id it will get from \"1.4 GET User Delivery List\" API.)\n\nBody: \n          For input payload,\n          body-->form-data and select key=File and name it \"image\"\n          value=\"select files\" from computer\n\nExpected Result:\n{\n    \"success\": true,\n    \"statusCode\": 200,\n    \"message\": \"Photos added successfully\",\n    \"fileUrl\": \"https://files.techserve4u.com/66c60ec0-9a04-4782-8165-9de860a58c4dScreen_Shot_2020-11-25_at_7.55.35_PM.png\"\n}\nActual Result:\n{\n    \"success\": true,\n    \"statusCode\": 200,\n    \"message\": \"Photos added successfully\",\n    \"fileUrl\": \"https://files.techserve4u.com/66c60ec0-9a04-4782-8165-9de860a58c4dScreen_Shot_2020-11-25_at_7.55.35_PM.png\"\n}\nStatus Code: 201 CREATED\n\nTest Result: PASS\n"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
